@@ -49,16 +49,17 @@
         flex-direction: column;
         gap: 1rem;
         max-width: 300px;
+        height: 50%;
         margin: 0 auto;
         border: 1px solid black;
         padding: 1rem;
+        grid-column: 4 / span 6;
     }
 
     main {
-        display: grid;
-        place-items: center;
+        align-items: center;
     }
-
+    
     .error {
         color: red;
         margin: none;
