@@ -25,7 +25,7 @@ export const actions = {
             const chocolatechip = cookies.get('auth');
             console.log(chocolatechip);
 
-            redirect(302, '/admin/dashboard');
+            redirect(302, '/admin/dashboard/home');
         } else {
             console.log('login failed');
             return fail(400, { username, incorrect: true})

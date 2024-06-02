@@ -20,6 +20,7 @@
         height: 3em;
         top: 0;
         left: 0; 
+        z-index: 5;
     }
 
     nav ul {

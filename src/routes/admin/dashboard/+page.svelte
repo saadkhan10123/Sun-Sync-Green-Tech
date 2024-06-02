@@ -1,6 +1,10 @@
 <script>
-    import { redirect } from '@sveltejs/kit';
+	import { onMount } from 'svelte';
+    import { goto } from '$app/navigation';
 
-    redirect(302, '/admin/dashboard/home');
+    onMount(() => {
+        goto('dashboard/home');
+    });
 </script>
 
+<h1></h1>

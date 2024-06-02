@@ -17,11 +17,13 @@
 
 <main>
     <SideBar { options } { active } on:active={handleActive}/>
-    <slot />
+    <div class="slot-container">
+        <slot />
+    </div>
 </main>
 
 <style>
-    slot {
+    .slot-container {
         grid-column: span 9;
     }
 </style>
