@@ -1,17 +1,30 @@
-<header>
-    <h1>Header</h1>
+<script>
+    import { colorPalette } from '$lib/Stores/colorPalette';
+    import { goto } from '$app/navigation';
+</script>
+
+<header style:background-color={$colorPalette.primary}>
+    <div on:click={() => goto('/')}>Header</div>
     <nav>
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
+            <li><a href="/calculator">Caclculator</a></li>
+            <li><a href="/about">About Us</a></li>
             <li><a href="/contact">Contact</a></li>
+            <li><a href="/solar-packages">Solar Packages</a></li>
+            <li><a href="">Products</a></li>
+            <li><a href="">Net Metering</a></li>
+            <li><a href="">Projects</a></li>
+            <li><a href="">Blogs</a></li>
+            <li><a href="">Shop</a></li>
         </ul>
     </nav>
 </header>
 
 <style>
+    header > div {
+        cursor: pointer;
+    }
     header {
-        background-color: #333;
         color: white;
         padding: 1rem;
         display: flex;

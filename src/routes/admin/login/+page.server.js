@@ -1,34 +1,36 @@
 /** @type {import('./$types').PageServerLoad} */
+import { initFirebase } from '$lib/initFirebase';
+import { redirect, fail } from '@sveltejs/kit';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
-import { fail } from '@sveltejs/kit';
-import { redirect } from '@sveltejs/kit';
+const app = await initFirebase();
+const auth = getAuth(app);
 
 export async function load() {
-    return {};
+    if(auth.currentUser) {
+        console.log('User already logged in');
+        return redirect(302, '/admin/dashboard');
+    }
 };
 
 export const actions = {
-    login: async ({ request, cookies }) => {
+    login: async ({ request }) => {
 
         let data = await request.formData();
         let username = data.get('username');
         let password = data.get('password');
-
-        if (username === 'admin' && password === 'admin') {
-            cookies.set("auth", "regularusertoken", {
-                path: '/',
-                httpOnly: true,
-                sameSite: 'strict',
-                maxAge: 60
-            });
-
-            const chocolatechip = cookies.get('auth');
-            console.log(chocolatechip);
-
-            redirect(302, '/admin/dashboard/home');
-        } else {
-            console.log('login failed');
-            return fail(400, { username, incorrect: true})
+        
+        try {
+            await signInWithEmailAndPassword(auth, username, password);
+            console.log('User logged in');
+            redirect(302, '/admin/dashboard');
+        } catch (error) {
+            console.log(error);
+            if (error.code === 'auth/user-not-found') {
+                return fail('Invalid username or password');
+            } else {
+                return fail('An error occurred');
+            }
         }
     }
 }

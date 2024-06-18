@@ -5,7 +5,8 @@
         { name: 'Home', link: '/admin/dashboard/home' },
         { name: 'Products', link: '/admin/dashboard/products' },
         { name: 'Add Products', link: '/admin/dashboard/add-products'},
-        { name: 'Settings', link: '/admin/dashboard/settings' }
+        { name: 'Settings', link: '/admin/dashboard/settings' },
+        { name: 'Logout', link: '/admin/dashboard/logout'}
     ];
 
     let active = 'Home';

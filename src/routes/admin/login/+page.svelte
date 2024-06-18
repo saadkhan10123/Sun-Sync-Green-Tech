@@ -42,6 +42,7 @@
         background-color: #333;
         color: white;
         border: none;
+        cursor: pointer;
     }
 
     .login-form {
