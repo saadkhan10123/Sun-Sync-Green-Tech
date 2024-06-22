@@ -1,31 +1,32 @@
 <script>
-    import Carousel from 'svelte-carousel'
+    import Carousel from '$lib/Components/Carousel.svelte';
+    import CarouselItem from '$lib/Components/CarouselItem.svelte';
 
     // get placeholder images
 
-    const images = [
-        {src: 'https://via.placeholder.com/150'},
-        {src: 'https://via.placeholder.com/150'},
-        {src: 'https://via.placeholder.com/150'},
+    const slides = [
+        { src: 'https://via.placeholder.com/500' },
+        { src: 'https://via.placeholder.com/500' },
+        { src: 'https://via.placeholder.com/500' }
     ]
 
-    let carousel;
+    slides.forEach(slide => {
+        slide.slide = CarouselItem;
+        slide.props = { src: slide.src };
+    });
 
-    const next = () => {
-        carousel.next();
-    }
 
-    const prev = () => {
-        carousel.prev();
-    }
 </script>
 
 <main>
-    <Carousel bind:this={carousel}>
-        {#each images as image}
-            <img src={image.src} alt="placeholder image">
-        {/each}
-    </Carousel>
-    <button on:click={prev}>Previous</button>
-    <button on:click={next}>Next</button>
+    <div class="carousel">
+        <Carousel { slides }/>
+    </div>
 </main>
+
+<style>
+    .carousel {
+        grid-column: span 12;
+    }
+
+</style>

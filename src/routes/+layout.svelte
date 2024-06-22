@@ -47,6 +47,10 @@
         flex: 1;
     }
 
+    :global(button) {
+        cursor: pointer;
+    }
+
     .header-placeholder {
         height: 5rem;
     }
